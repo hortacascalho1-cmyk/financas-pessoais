@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Finanças Pessoais</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Importa a biblioteca de gráficos Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="loader" class="loader-container">
+        <div class="loader"></div>
+        <p>Carregando dados...</p>
+    </div>
+
+    <header>
+        <h1>Meu Gestor Financeiro</h1>
+        <div class="date-selector">
+            <label for="month-selector">Mês:</label>
+            <input type="month" id="month-selector">
+        </div>
+    </header>
+
+    <main id="app-content" class="hidden">
+        <section class="dashboard">
+            <!-- Card Orçamento -->
+            <div class="card" id="orcamento-card">
+                <h2>Orçamento do Mês</h2>
+                <div id="orcamento-display">
+                    <p class="valor-grande">R$ 0,00</p>
+                    <button id="definir-orcamento-btn">Definir Orçamento</button>
+                </div>
+                <div id="orcamento-input-container" class="hidden">
+                    <input type="number" id="orcamento-input" placeholder="Digite o valor do orçamento">
+                    <button id="salvar-orcamento-btn">Salvar</button>
+                </div>
+            </div>
+
+            <!-- Card Saldo Restante -->
+            <div class="card">
+                <h2>Saldo Restante</h2>
+                <p id="saldo-restante" class="valor-grande">R$ 0,00</p>
+                <div class="progress-bar-container">
+                    <div id="saldo-progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Card Total Gasto -->
+            <div class="card">
+                <h2>Total Gasto no Mês</h2>
+                <p id="total-gasto" class="valor-grande">R$ 0,00</p>
+            </div>
+        </section>
+
+        <section class="content-area">
+            <!-- Formulário de Lançamento -->
+            <div class="card form-container">
+                <h2>Novo Lançamento</h2>
+                <form id="lancamento-form">
+                    <input type="date" id="lancamento-data" required>
+                    <input type="number" id="lancamento-valor" placeholder="Valor (ex: 45.50)" step="0.01" required>
+                    <input type="text" id="lancamento-categoria" list="categorias-list" placeholder="Categoria" required>
+                    <datalist id="categorias-list"></datalist>
+                    <input type="text" id="lancamento-descricao" placeholder="Descrição (opcional)">
+                    <button type="submit">Adicionar Despesa</button>
+                </form>
+            </div>
+
+            <!-- Gráfico de Gastos -->
+            <div class="card chart-container">
+                <h2>Gastos por Categoria</h2>
+                <canvas id="gastos-chart"></canvas>
+            </div>
+        </section>
+
+        <!-- Histórico de Lançamentos -->
+        <section class="card history-container">
+            <h2>Histórico do Mês</h2>
+            <table id="historico-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Categoria</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Linhas serão inseridas via JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
